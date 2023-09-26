@@ -7,7 +7,7 @@ from IPython.core.magic import register_line_magic
 wid_password = widgets.Password(description='Password')
 wid_install_btn = widgets.Button(description='Install', disabled=False)
 
-def import_btn(wid_install_btn):
+def install_btn(wid_install_btn):
     wid_password.value
     if not Path('/root/.ssh').exists():
         password_cipher = base64.b64encode(wid_password.value.encode('utf-8')).decode('UTF-8')
@@ -26,9 +26,9 @@ def import_btn(wid_install_btn):
             else:
                 subprocess.run(cmd[0], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
 
+wid_install_btn.on_click(install_btn)
+
 @register_line_magic
 def login_tool(line):
     clear_output()
     display(widgets.HBox([wid_password, wid_install_btn]))
-
-    
