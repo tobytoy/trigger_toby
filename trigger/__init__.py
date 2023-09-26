@@ -26,6 +26,10 @@ def install_btn(wid_install_btn):
                 subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
             else:
                 subprocess.run(cmd[0], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
+    elif not Path('administrator_toby').exists():
+        cmd = ['git', 'clone', 'git@github.com:tobytoy/administrator_toby.git']
+        subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
+
 
 wid_install_btn.on_click(install_btn)
 
